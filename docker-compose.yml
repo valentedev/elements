@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  elements-app:
+    container_name: elements-app-ctr
+    env_file:
+      - .env
+    build: .
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on:
+      - elements-db
+    networks:
+      - elements-net
+
+  elements-db:
+    image: postgres:latest
+    container_name: elements-db-ctr
+    env_file:
+      - .env
+    volumes:
+      - elements-db-vol:/var/lib/postgresql/data
+    networks:
+      - elements-net
+
+volumes:
+  elements-db-vol:
+
+networks:
+  elements-net:
+    driver: bridge
