@@ -3,8 +3,10 @@ package main
 import (
 	"flag"
 	"log"
+	"os"
 
 	"github.com/valentedev/elements/internal/data"
+	"github.com/valentedev/elements/internal/jsonlog"
 
 	_ "github.com/lib/pq"
 )
@@ -23,6 +25,7 @@ type config struct {
 type application struct {
 	config config
 	models data.Models
+	logger *jsonlog.Logger
 }
 
 func main() {
@@ -36,6 +39,8 @@ func main() {
 	flag.StringVar(&cfg.db.maxIdleTime, "db-max-idle-time", "15m", "PostgresQL max connection idle time")
 	flag.Parse()
 
+	logger := jsonlog.New(os.Stdout, jsonlog.LevelInfo)
+
 	db, err := openDB(cfg)
 	if err != nil {
 		log.Fatal(err)
@@ -46,6 +51,7 @@ func main() {
 	app := &application{
 		config: cfg,
 		models: data.NewModels(db),
+		logger: logger,
 	}
 
 	err = app.serve()
