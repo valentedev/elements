@@ -39,4 +39,12 @@ docker/migrations/up:
 
 .PHONY: docker/migrations/down
 docker/migrations/down:
-	docker run -v $(pwd)/migrations:/migrations --network elements_elements-net migrate/migrate -path=/migrations/ -database=${DBDSN} down
+	docker run -v $(pwd)/migrations:/migrations --network elements_elements-net migrate/migrate -path=/migrations/ -database=${DBDSN} down --all
+
+.PHONY: dc/up
+dc/up:
+	docker-compose up -d
+
+	.PHONY: dc/down
+dc/down:
+	docker-compose down

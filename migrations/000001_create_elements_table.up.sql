@@ -1,7 +1,5 @@
 CREATE TABLE IF NOT EXISTS elements_table
 ( 
-    id bigserial PRIMARY KEY,
-    created_at timestamp(0) with time zone NOT NULL DEFAULT NOW(),
     atomic_number text COLLATE pg_catalog."default",
     symbol text COLLATE pg_catalog."default",
     name text COLLATE pg_catalog."default",
