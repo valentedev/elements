@@ -21,8 +21,8 @@ func (app *application) listElementsHandler(w http.ResponseWriter, r *http.Reque
 	input.AtomicWeight = app.readString(qs, "atomic_weight", "")
 	input.Filters.Page = app.readInt(qs, "page", 1, v)
 	input.Filters.PageSize = app.readInt(qs, "page_size", 20, v)
-	input.Filters.Sort = app.readString(qs, "sort", "id")
-	input.Filters.SortSafelist = []string{"id", "title", "year", "runtime", "-id", "-title", "-year", "-runtime"}
+	input.Filters.Sort = app.readString(qs, "sort", "name")
+	input.Filters.SortSafelist = []string{"name", "atomic_weight", "-name", "-atomic_weight"}
 
 	if data.ValidateFilters(v, input.Filters); !v.Valid() {
 		app.failedValidationResponse(w, r, v.Errors)

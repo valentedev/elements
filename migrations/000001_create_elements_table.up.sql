@@ -4,8 +4,8 @@ CREATE TABLE IF NOT EXISTS elements_table
     symbol text COLLATE pg_catalog."default",
     name text COLLATE pg_catalog."default",
     origin_of_name text COLLATE pg_catalog."default",
-    periodo text COLLATE pg_catalog."default",
-    grupo text COLLATE pg_catalog."default",
+    period text COLLATE pg_catalog."default",
+    groups text COLLATE pg_catalog."default",
     block text COLLATE pg_catalog."default",
     atomic_weight text COLLATE pg_catalog."default",
     density_g_cm3 text COLLATE pg_catalog."default",
@@ -16,4 +16,4 @@ CREATE TABLE IF NOT EXISTS elements_table
     abundance_in_earth_mg_kg text COLLATE pg_catalog."default",
     origin text COLLATE pg_catalog."default",
     phase_at_room_temperature text COLLATE pg_catalog."default"
-)
+)   
